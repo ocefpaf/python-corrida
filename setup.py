@@ -42,7 +42,7 @@ config = dict(name='corrida',
               url='http://pypi.python.org/pypi/corrida/',
               download_url='%s/c/corrida/corrida-%s.tar.gz' % (source, version),
               platforms='any',
-              keywords=['oceanography', 'data analysis', 'cnv', 'DataFrame'],
+              keywords=['running', 'gps'],
               install_requires=install_requires)
 
 setup(**config)
