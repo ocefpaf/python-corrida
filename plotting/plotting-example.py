@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
 #
-# gpx-example.py
+# plotting-example.py
 #
-# purpose:
+# purpose:  Plotting over "Open Street Map" figure
 # author:   Filipe P. A. Fernandes
 # e-mail:   ocefpaf@gmail
 # web:      http://ocefpaf.tiddlyspot.com/
 # created:  13-Feb-2013
-# modified: Mon 18 Feb 2013 11:13:54 AM BRT
+# modified: Thu 05 Sep 2013 01:04:17 PM BRT
 #
-# obs:
+# obs: http://www.openstreetmap.org/export?
+#      bbox=-46.7437,-23.5728,-46.71,-23.5496#"
 #
 
-"http://www.openstreetmap.org/export?bbox=-46.7437,-23.5728,-46.71,-23.5496#"
 
 from __future__ import division
 
@@ -24,9 +24,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.basemap import Basemap
 
 
-def make_map(llcrnrlon=-46.7437, urcrnrlon=-46.71,
-             llcrnrlat=-23.5728, urcrnrlat=-23.5496, image="map.png"):
-
+def make_map(llcrnrlon, urcrnrlon, llcrnrlat, urcrnrlat, image):
     fig, ax = plt.subplots()
     m = Basemap(llcrnrlon=llcrnrlon, urcrnrlon=urcrnrlon,
                 llcrnrlat=llcrnrlat, urcrnrlat=urcrnrlat,
@@ -34,13 +32,12 @@ def make_map(llcrnrlon=-46.7437, urcrnrlon=-46.71,
                 lon_0=(urcrnrlon + llcrnrlon) / 2,
                 lat_0=(urcrnrlat + llcrnrlat) / 2,
                 lat_ts=-23.5)
-
     m.ax = ax
     m.imshow(plt.imread(image), origin='upper', zorder=1)
     return fig, ax, m
 
 
-def read_gpx(fname='2013-02-06-Running.gpx'):
+def read_gpx(fname):
     gpx_file = open(fname, 'r')
     gpx = gpxpy.parse(gpx_file)
     lon, lat, elv = [], [], []
@@ -56,19 +53,18 @@ def read_gpx(fname='2013-02-06-Running.gpx'):
 
 if __name__ == '__main__':
     lon, lat, elv = read_gpx(fname='2013-02-06-Running.gpx')
-    llcrnrlon = -46.7437
-    urcrnrlon = -46.7100
-    llcrnrlat = -23.5728
-    urcrnrlat = -23.5496
+    llcrnrlon, urcrnrlon = -46.7437, -46.7100
+    llcrnrlat, urcrnrlat = -23.5728, -23.5496
     fig, ax, m = make_map(llcrnrlon=llcrnrlon, urcrnrlon=urcrnrlon,
                           llcrnrlat=llcrnrlat, urcrnrlat=urcrnrlat,
-                          image="map-usp.png")
+                          image="openstreetmap.png")
 
-    parallels = np.arange(llcrnrlat, urcrnrlat, 0.004)
-    meridians = np.arange(llcrnrlon, urcrnrlon, 0.008)
-    kw = dict()
-    m.drawparallels(parallels, labels=[1, 0, 0, 1], **kw)
-    m.drawmeridians(meridians, labels=[1, 1, 0, 1], **kw)
+    dx = 0.008
+    dy = 0.004
+    parallels = np.arange(llcrnrlat, urcrnrlat + dy, dy)
+    meridians = np.arange(llcrnrlon, urcrnrlon + dx, dx)
+    m.drawparallels(parallels, labels=[1, 0, 0, 0])
+    m.drawmeridians(meridians, labels=[0, 0, 0, 1])
 
     m.plot(lon, lat, 'k.', latlon=True, zorder=2)
     plt.show()
