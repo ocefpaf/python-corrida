@@ -1,15 +1,15 @@
-Atleta:, Filipe    
- Idade:, 33 ,anos
- Distancia,base:,  5000.0,m
- Tempo,base:,00:23:00
+Atleta:, Filipe,,,,,,,,,,
+ Idade:, 33 ,anos,,,,,,,,,
+ Distancia,base:,  5000.0,m,,,,,,,
+ Tempo,base:,00:23:00,,,,,,,,
   
- VO2,estimado:, 40,ml/kg/min
- Equivalente,a, 94 %,do,VO2,maximo:, 42,ml/kg/min
+ VO2,estimado:, 40,ml/kg/min,,,,,,,,
+ Equivalente,a, 94 %,do,VO2,maximo:, 42,ml/kg/min,,,,
   
- Ritmo,cardiaco:,176,bpm
- Equivalente,a, 97%,do,ritmo,cardiaco,maximo:,183,bpm
+ Ritmo,cardiaco:,176,bpm,,,,,,,,
+ Equivalente,a, 97%,do,ritmo,cardiaco,maximo:,183,bpm,,,
   
- Tempos,Estimados,e,%VO2,Max 
+ Tempos,Estimados,e,%VO2,Max,,,,,,,
 Distancia,    105%,    100%,     95%,     90%,     85%,     80%,     75%,     70%,     65%,     60%
   
    100.0,00:00:21,00:00:22,00:00:23,00:00:24,00:00:25,00:00:26,00:00:28,00:00:29,00:00:31,00:00:33
