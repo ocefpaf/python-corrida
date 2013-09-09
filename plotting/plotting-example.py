@@ -2,12 +2,12 @@
 #
 # plotting-example.py
 #
-# purpose:  Plotting over "Open Street Map" figure
+# purpose:  Manually plotting over "Open Street Map" image.
 # author:   Filipe P. A. Fernandes
 # e-mail:   ocefpaf@gmail
 # web:      http://ocefpaf.tiddlyspot.com/
 # created:  13-Feb-2013
-# modified: Thu 05 Sep 2013 01:04:17 PM BRT
+# modified: Mon 09 Sep 2013 11:27:10 AM BRT
 #
 # obs: http://www.openstreetmap.org/export?
 #      bbox=-46.7437,-23.5728,-46.71,-23.5496#"
@@ -52,15 +52,14 @@ def read_gpx(fname):
     return lon, lat, elv
 
 if __name__ == '__main__':
-    lon, lat, elv = read_gpx(fname='2013-02-06-Running.gpx')
+    lon, lat, elv = read_gpx(fname='GPX/2013-02-06-Running.gpx')
     llcrnrlon, urcrnrlon = -46.7437, -46.7100
     llcrnrlat, urcrnrlat = -23.5728, -23.5496
     fig, ax, m = make_map(llcrnrlon=llcrnrlon, urcrnrlon=urcrnrlon,
                           llcrnrlat=llcrnrlat, urcrnrlat=urcrnrlat,
-                          image="openstreetmap.png")
+                          image="basemap/openstreetmap.png")
 
-    dx = 0.008
-    dy = 0.004
+    dx, dy = 0.008, 0.004
     parallels = np.arange(llcrnrlat, urcrnrlat + dy, dy)
     meridians = np.arange(llcrnrlon, urcrnrlon + dx, dx)
     m.drawparallels(parallels, labels=[1, 0, 0, 0])
