@@ -49,7 +49,7 @@ driver = ogr.GetDriverByName("GeoJSON")
 
 def convert(fname):
     """Convert GPX to GeoJSON."""
-    path, fname = os.path.split(os.path.abspath(fname))
+    fname = os.path.abspath(fname)
     data = ogr.Open(fname)
     tracks = data.GetLayer("tracks")
     # NOTE: Assumes only one track per file.
@@ -61,6 +61,7 @@ def convert(fname):
 
 def save_geojson(fout, track):
     """Save as save fname with ".geojson" extension."""
+    fout = os.path.abspath(fout)
     with open(fout, 'w') as f:
         json.dump(track, f, indent=4, sort_keys=True)
     return None
