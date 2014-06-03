@@ -7,7 +7,7 @@
 # e-mail:   ocefpaf@gmail
 # web:      http://ocefpaf.github.io/
 # created:  08-Sep-2013
-# modified: Mon 09 Sep 2013 11:14:16 AM BRT
+# modified: Mon 09 Sep 2013 12:44:08 PM BRT
 #
 # obs:  Assumes only one track and that track is the only desired feature in
 #  the file!
@@ -55,8 +55,9 @@ def convert(fname):
     # NOTE: Assumes only one track per file.
     geojson = tracks.GetFeature(0).ExportToJson()
     parsed = json.loads(geojson)
-    # Cleaned-up GeoJSON by extracting just the geometry.
-    return parsed['geometry']
+    # "Cleaned-up" GeoJSON.
+    track = parsed['geometry']
+    return track
 
 
 def save_geojson(fout, track):
